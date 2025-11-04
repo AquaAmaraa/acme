@@ -3,60 +3,22 @@ import Link from 'next/link';
 import Head from 'next/head';
 import { ShoppingCart, Search, Menu } from 'lucide-react';
 import { useCart } from './_app';
+import { allProducts } from '../data/products';
 
 export default function Home() {
   const { getTotalItems, setIsCartOpen, cart, isCartOpen, removeFromCart, updateQuantity, getTotalPrice } = useCart();
   
-  const products = [
-    {
-      id: 1,
-      name: 'Acme Circles T-Shirt',
-      price: '$20.00 USD',
-      image: 'https://cdn.shopify.com/s/files/1/0754/3727/7491/files/t-shirt-1.png?v=1689798965',
-      href: '/product/acme-geometric-circles-t-shirt',
-      large: true
-    },
-    {
-      id: 2,
-      name: 'Acme Drawstring Bag',
-      price: '$12.00 USD',
-      image: 'https://cdn.shopify.com/s/files/1/0754/3727/7491/files/bag-1-dark.png?v=1689796304',
-      href: '/product/acme-drawstring-bag'
-    },
-    {
-      id: 3,
-      name: 'Acme Cup',
-      price: '$15.00 USD',
-      image: 'https://cdn.shopify.com/s/files/1/0754/3727/7491/files/cup-black.png?v=1690003088',
-      href: '/product/acme-cup'
-    },
+  const featuredProducts = [
+    allProducts.find(p => p.handle === 'acme-geometric-circles-t-shirt'),
+    allProducts.find(p => p.handle === 'acme-drawstring-bag'),
+    allProducts.find(p => p.handle === 'acme-cup')
   ];
 
   const carouselProducts = [
-    {
-      name: 'Acme Mug',
-      price: '$15.00',
-      image: 'https://cdn.shopify.com/s/files/1/0754/3727/7491/files/mug-1.png?v=1690003527',
-      href: '/product/acme-mug'
-    },
-    {
-      name: 'Acme Hoodie',
-      price: '$50.00',
-      image: 'https://cdn.shopify.com/s/files/1/0754/3727/7491/files/hoodie-1.png?v=1690003482',
-      href: '/product/acme-hoodie'
-    },
-    {
-      name: 'Acme Baby Onesie',
-      price: '$10.00',
-      image: 'https://cdn.shopify.com/s/files/1/0754/3727/7491/files/baby-onesie-beige-1.png?v=1690002632',
-      href: '/product/acme-baby-onesie'
-    },
-    {
-      name: 'Acme Baby Cap',
-      price: '$10.00',
-      image: 'https://cdn.shopify.com/s/files/1/0754/3727/7491/files/baby-cap-black.png?v=1690002570',
-      href: '/product/acme-baby-cap'
-    }
+    allProducts.find(p => p.handle === 'acme-mug'),
+    allProducts.find(p => p.handle === 'acme-hoodie'),
+    allProducts.find(p => p.handle === 'acme-baby-onesie'),
+    allProducts.find(p => p.handle === 'acme-baby-cap')
   ];
 
   return (
@@ -149,9 +111,9 @@ export default function Home() {
                 <div className="mt-8 flex flex-col gap-4">
                   {cart.map((item) => (
                     <div key={item.id} className="flex gap-4 border-b border-neutral-200 dark:border-neutral-700 pb-4">
-                      <img src={item.image} alt={item.name} className="h-24 w-24 object-contain rounded border" />
+                      <img src={item.image} alt={item.title} className="h-24 w-24 object-contain rounded border" />
                       <div className="flex flex-1 flex-col justify-between">
-                        <div><p className="font-semibold">{item.name}</p><p className="text-sm text-neutral-500">{item.price}</p></div>
+                        <div><p className="font-semibold">{item.title}</p><p className="text-sm text-neutral-500">{item.price}</p></div>
                         <div className="flex items-center gap-3">
                           <button onClick={() => updateQuantity(item.id, item.quantity - 1)} className="px-2 py-1 border rounded">-</button>
                           <span>{item.quantity}</span>
@@ -174,20 +136,20 @@ export default function Home() {
 
       <section className="mx-auto grid max-w-screen-2xl gap-4 px-4 pb-4 md:grid-cols-6 md:grid-rows-2 lg:max-h-[calc(100vh-200px)]">
         <div className="md:col-span-4 md:row-span-2">
-          <Link href={products[0].href} className="relative block aspect-square h-full w-full">
+          <Link href={`/product/${featuredProducts[0].handle}`} className="relative block aspect-square h-full w-full">
             <div className="group flex h-full w-full items-center justify-center overflow-hidden rounded-lg border bg-white hover:border-blue-600 dark:bg-black relative border-neutral-200 dark:border-neutral-800">
               <img 
-                alt={products[0].name}
-                src={products[0].image}
+                alt={featuredProducts[0].title}
+                src={featuredProducts[0].image}
                 className="relative h-full w-full object-contain transition duration-300 ease-in-out group-hover:scale-105"
               />
               <div className="absolute bottom-0 left-0 flex w-full px-4 pb-4 @container/label lg:px-20 lg:pb-[35%]">
                 <div className="flex items-center rounded-full border bg-white/70 p-1 text-xs font-semibold text-black backdrop-blur-md dark:border-neutral-800 dark:bg-black/70 dark:text-white">
                   <h3 className="mr-4 line-clamp-2 flex-grow pl-2 leading-none tracking-tight">
-                    {products[0].name}
+                    {featuredProducts[0].title}
                   </h3>
                   <p className="flex-none rounded-full bg-blue-600 p-2 text-white">
-                    $20.00<span className="ml-1 inline hidden @[275px]/label:inline">USD</span>
+                    {featuredProducts[0].price}<span className="ml-1 inline hidden @[275px]/label:inline">USD</span>
                   </p>
                 </div>
               </div>
@@ -196,20 +158,20 @@ export default function Home() {
         </div>
 
         <div className="md:col-span-2 md:row-span-1">
-          <Link href={products[1].href} className="relative block aspect-square h-full w-full">
+          <Link href={`/product/${featuredProducts[1].handle}`} className="relative block aspect-square h-full w-full">
             <div className="group flex h-full w-full items-center justify-center overflow-hidden rounded-lg border bg-white hover:border-blue-600 dark:bg-black relative border-neutral-200 dark:border-neutral-800">
               <img 
-                alt={products[1].name}
-                src={products[1].image}
+                alt={featuredProducts[1].title}
+                src={featuredProducts[1].image}
                 className="relative h-full w-full object-contain transition duration-300 ease-in-out group-hover:scale-105"
               />
               <div className="absolute bottom-0 left-0 flex w-full px-4 pb-4 @container/label">
                 <div className="flex items-center rounded-full border bg-white/70 p-1 text-xs font-semibold text-black backdrop-blur-md dark:border-neutral-800 dark:bg-black/70 dark:text-white">
                   <h3 className="mr-4 line-clamp-2 flex-grow pl-2 leading-none tracking-tight">
-                    {products[1].name}
+                    {featuredProducts[1].title}
                   </h3>
                   <p className="flex-none rounded-full bg-blue-600 p-2 text-white">
-                    $12.00<span className="ml-1 inline hidden @[275px]/label:inline">USD</span>
+                    {featuredProducts[1].price}<span className="ml-1 inline hidden @[275px]/label:inline">USD</span>
                   </p>
                 </div>
               </div>
@@ -218,20 +180,20 @@ export default function Home() {
         </div>
 
         <div className="md:col-span-2 md:row-span-1">
-          <Link href={products[2].href} className="relative block aspect-square h-full w-full">
+          <Link href={`/product/${featuredProducts[2].handle}`} className="relative block aspect-square h-full w-full">
             <div className="group flex h-full w-full items-center justify-center overflow-hidden rounded-lg border bg-white hover:border-blue-600 dark:bg-black relative border-neutral-200 dark:border-neutral-800">
               <img 
-                alt={products[2].name}
-                src={products[2].image}
+                alt={featuredProducts[2].title}
+                src={featuredProducts[2].image}
                 className="relative h-full w-full object-contain transition duration-300 ease-in-out group-hover:scale-105"
               />
               <div className="absolute bottom-0 left-0 flex w-full px-4 pb-4 @container/label">
                 <div className="flex items-center rounded-full border bg-white/70 p-1 text-xs font-semibold text-black backdrop-blur-md dark:border-neutral-800 dark:bg-black/70 dark:text-white">
                   <h3 className="mr-4 line-clamp-2 flex-grow pl-2 leading-none tracking-tight">
-                    {products[2].name}
+                    {featuredProducts[2].title}
                   </h3>
                   <p className="flex-none rounded-full bg-blue-600 p-2 text-white">
-                    $15.00<span className="ml-1 inline hidden @[275px]/label:inline">USD</span>
+                    {featuredProducts[2].price}<span className="ml-1 inline hidden @[275px]/label:inline">USD</span>
                   </p>
                 </div>
               </div>
@@ -244,10 +206,10 @@ export default function Home() {
         <ul className="flex animate-carousel gap-4">
           {[...carouselProducts, ...carouselProducts, ...carouselProducts].map((product, index) => (
             <li key={index} className="relative aspect-square h-[30vh] max-h-[275px] w-2/3 max-w-[475px] flex-none md:w-1/3">
-              <Link href={product.href} className="relative h-full w-full">
+              <Link href={`/product/${product.handle}`} className="relative h-full w-full">
                 <div className="group flex h-full w-full items-center justify-center overflow-hidden rounded-lg border bg-white hover:border-blue-600 dark:bg-black relative border-neutral-200 dark:border-neutral-800">
                   <img 
-                    alt={product.name}
+                    alt={product.title}
                     loading="lazy"
                     src={product.image}
                     className="relative h-full w-full object-contain transition duration-300 ease-in-out group-hover:scale-105"
@@ -255,7 +217,7 @@ export default function Home() {
                   <div className="absolute bottom-0 left-0 flex w-full px-4 pb-4 @container/label">
                     <div className="flex items-center rounded-full border bg-white/70 p-1 text-xs font-semibold text-black backdrop-blur-md dark:border-neutral-800 dark:bg-black/70 dark:text-white">
                       <h3 className="mr-4 line-clamp-2 flex-grow pl-2 leading-none tracking-tight">
-                        {product.name}
+                        {product.title}
                       </h3>
                       <p className="flex-none rounded-full bg-blue-600 p-2 text-white">
                         {product.price}<span className="ml-1 inline hidden @[275px]/label:inline">USD</span>
