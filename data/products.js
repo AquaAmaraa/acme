@@ -56,17 +56,6 @@ export const allProducts = [
     href: '/product/acme-hoodie'
   },
   { 
-    id: '4', 
-    title: 'Acme Circles T-Shirt', 
-    handle: 'acme-geometric-circles-t-shirt', 
-    price: '$20.00', 
-    image: 'https://cdn.shopify.com/s/files/1/0754/3727/7491/files/t-shirt-1.png?v=1689798965', 
-    alt: 'Acme Circles T-Shirt',
-    category: 'shirts',
-    description: 'Modern geometric design t-shirt featuring an abstract circles pattern.',
-    href: '/product/acme-geometric-circles-t-shirt'
-  },
-  { 
     id: '5', 
     title: 'Acme Prism T-Shirt', 
     handle: 'acme-rainbow-prism-t-shirt', 
