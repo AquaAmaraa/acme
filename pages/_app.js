@@ -1,7 +1,6 @@
 import React, { useState, createContext, useContext } from 'react';
 import '../styles/globals.css';
 
-// Cart Context
 const CartContext = createContext();
 
 export const useCart = () => {
