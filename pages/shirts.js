@@ -42,7 +42,6 @@ export default function ShirtsPage() {
         <meta name="description" content="Browse our collection of shirts" />
       </Head>
 
-      {/* Navbar */}
       <nav className="relative flex items-center justify-between p-4 lg:px-6">
         <div className="block flex-none md:hidden">
           <button aria-label="Open mobile menu" className="flex h-11 w-11 items-center justify-center rounded-md border border-neutral-200 text-black transition-colors md:hidden dark:border-neutral-700 dark:text-white">
@@ -87,7 +86,6 @@ export default function ShirtsPage() {
         </div>
       </nav>
 
-      {/* Cart Panel */}
       {isCartOpen && (
         <>
           <div className="fixed inset-0 bg-black/30 z-40" onClick={() => setIsCartOpen(false)}></div>
@@ -131,14 +129,11 @@ export default function ShirtsPage() {
         </>
       )}
 
-      {/* Main Content */}
       <main className="mx-auto flex max-w-screen-2xl flex-col gap-8 px-4 pb-4 text-black md:flex-row dark:text-white">
-        {/* Left Sidebar - Collections */}
         <div className="order-first w-full flex-none md:max-w-[125px]">
           <nav>
             <h3 className="hidden text-xs text-neutral-500 md:block dark:text-neutral-400">Collections</h3>
             
-            {/* Desktop Collection List */}
             <ul className="hidden md:block">
               {collections.map((collection) => (
                 <li key={collection} className="mt-2 flex text-black dark:text-white">
@@ -158,7 +153,6 @@ export default function ShirtsPage() {
               ))}
             </ul>
 
-            {/* Mobile Collection Dropdown */}
             <ul className="md:hidden">
               <div className="relative">
                 <div className="flex w-full items-center justify-between rounded border border-black/30 px-4 py-2 text-sm dark:border-white/30">
@@ -170,7 +164,6 @@ export default function ShirtsPage() {
           </nav>
         </div>
 
-        {/* Center - Product Grid */}
         <div className="order-last min-h-screen w-full md:order-none">
           <section>
             <ul className="grid grid-flow-row gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
@@ -202,12 +195,10 @@ export default function ShirtsPage() {
           </section>
         </div>
 
-        {/* Right Sidebar - Sort */}
         <div className="order-none flex-none md:order-last md:w-[125px]">
           <nav>
             <h3 className="hidden text-xs text-neutral-500 md:block dark:text-neutral-400">Sort by</h3>
             
-            {/* Desktop Sort List */}
             <ul className="hidden md:block">
               {sortOptions.map((option) => (
                 <li key={option.name} className="mt-2 flex text-sm text-black dark:text-white">
@@ -227,7 +218,6 @@ export default function ShirtsPage() {
               ))}
             </ul>
 
-            {/* Mobile Sort Dropdown */}
             <ul className="md:hidden">
               <div className="relative">
                 <div className="flex w-full items-center justify-between rounded border border-black/30 px-4 py-2 text-sm dark:border-white/30">
@@ -240,77 +230,76 @@ export default function ShirtsPage() {
         </div>
       </main>
 
-      {/* Footer */}
       <footer className="text-sm text-neutral-500 dark:text-neutral-400">
-  <div className="mx-auto flex w-full max-w-7xl flex-col gap-6 border-t border-neutral-200 px-6 py-12 text-sm md:flex-row md:gap-12 md:px-4 min-[1320px]:px-0 dark:border-neutral-700">
-    <div>
-      <a className="flex items-center gap-2 text-black md:pt-1 dark:text-white" href="/">
-        <div className="flex flex-none items-center justify-center border border-neutral-200 bg-white dark:border-neutral-700 dark:bg-black h-[30px] w-[30px] rounded-lg">
-          <svg xmlns="http://www.w3.org/2000/svg" aria-label="Acme Store logo" viewBox="0 0 32 28" className="h-4 w-4 fill-black dark:fill-white h-[10px] w-[10px]">
-            <path d="M21.5758 9.75769L16 0L0 28H11.6255L21.5758 9.75769Z"></path>
-            <path d="M26.2381 17.9167L20.7382 28H32L26.2381 17.9167Z"></path>
-          </svg>
+        <div className="mx-auto flex w-full max-w-7xl flex-col gap-6 border-t border-neutral-200 px-6 py-12 text-sm md:flex-row md:gap-12 md:px-4 min-[1320px]:px-0 dark:border-neutral-700">
+          <div>
+            <a className="flex items-center gap-2 text-black md:pt-1 dark:text-white" href="/">
+              <div className="flex flex-none items-center justify-center border border-neutral-200 bg-white dark:border-neutral-700 dark:bg-black h-[30px] w-[30px] rounded-lg">
+                <svg xmlns="http://www.w3.org/2000/svg" aria-label="Acme Store logo" viewBox="0 0 32 28" className="h-4 w-4 fill-black dark:fill-white h-[10px] w-[10px]">
+                  <path d="M21.5758 9.75769L16 0L0 28H11.6255L21.5758 9.75769Z"></path>
+                  <path d="M26.2381 17.9167L20.7382 28H32L26.2381 17.9167Z"></path>
+                </svg>
+              </div>
+              <span className="uppercase">Acme Store</span>
+            </a>
+          </div>
+          <nav>
+            <ul>
+              <li>
+                <a className="block p-2 text-lg underline-offset-4 hover:text-black hover:underline md:inline-block md:text-sm dark:hover:text-neutral-300 text-black dark:text-neutral-300" href="/">
+                  Home
+                </a>
+              </li>
+              <li>
+                <a className="block p-2 text-lg underline-offset-4 hover:text-black hover:underline md:inline-block md:text-sm dark:hover:text-neutral-300" href="/about">
+                  About
+                </a>
+              </li>
+              <li>
+                <a className="block p-2 text-lg underline-offset-4 hover:text-black hover:underline md:inline-block md:text-sm dark:hover:text-neutral-300" href="/terms-conditions">
+                  Terms &amp; Conditions
+                </a>
+              </li>
+              <li>
+                <a className="block p-2 text-lg underline-offset-4 hover:text-black hover:underline md:inline-block md:text-sm dark:hover:text-neutral-300" href="/shipping-return-policy">
+                  Shipping &amp; Return Policy
+                </a>
+              </li>
+              <li>
+                <a className="block p-2 text-lg underline-offset-4 hover:text-black hover:underline md:inline-block md:text-sm dark:hover:text-neutral-300" href="/privacy-policy">
+                  Privacy Policy
+                </a>
+              </li>
+              <li>
+                <a className="block p-2 text-lg underline-offset-4 hover:text-black hover:underline md:inline-block md:text-sm dark:hover:text-neutral-300" href="/frequently-asked-questions">
+                  FAQ
+                </a>
+              </li>
+            </ul>
+          </nav>
+          <div className="md:ml-auto">
+            <a className="flex h-8 w-max flex-none items-center justify-center rounded-md border border-neutral-200 bg-white text-xs text-black dark:border-neutral-700 dark:bg-black dark:text-white" aria-label="Deploy on Vercel" href="https://vercel.com/templates/next.js/nextjs-commerce">
+              <span className="px-3">▲</span>
+              <hr className="h-full border-r border-neutral-200 dark:border-neutral-700" />
+              <span className="px-3">Deploy</span>
+            </a>
+          </div>
         </div>
-        <span className="uppercase">Acme Store</span>
-      </a>
-    </div>
-    <nav>
-      <ul>
-        <li>
-          <a className="block p-2 text-lg underline-offset-4 hover:text-black hover:underline md:inline-block md:text-sm dark:hover:text-neutral-300 text-black dark:text-neutral-300" href="/">
-            Home
-          </a>
-        </li>
-        <li>
-          <a className="block p-2 text-lg underline-offset-4 hover:text-black hover:underline md:inline-block md:text-sm dark:hover:text-neutral-300" href="/about">
-            About
-          </a>
-        </li>
-        <li>
-          <a className="block p-2 text-lg underline-offset-4 hover:text-black hover:underline md:inline-block md:text-sm dark:hover:text-neutral-300" href="/terms-conditions">
-            Terms &amp; Conditions
-          </a>
-        </li>
-        <li>
-          <a className="block p-2 text-lg underline-offset-4 hover:text-black hover:underline md:inline-block md:text-sm dark:hover:text-neutral-300" href="/shipping-return-policy">
-            Shipping &amp; Return Policy
-          </a>
-        </li>
-        <li>
-          <a className="block p-2 text-lg underline-offset-4 hover:text-black hover:underline md:inline-block md:text-sm dark:hover:text-neutral-300" href="/privacy-policy">
-            Privacy Policy
-          </a>
-        </li>
-        <li>
-          <a className="block p-2 text-lg underline-offset-4 hover:text-black hover:underline md:inline-block md:text-sm dark:hover:text-neutral-300" href="/frequently-asked-questions">
-            FAQ
-          </a>
-        </li>
-      </ul>
-    </nav>
-    <div className="md:ml-auto">
-      <a className="flex h-8 w-max flex-none items-center justify-center rounded-md border border-neutral-200 bg-white text-xs text-black dark:border-neutral-700 dark:bg-black dark:text-white" aria-label="Deploy on Vercel" href="https://vercel.com/templates/next.js/nextjs-commerce">
-        <span className="px-3">▲</span>
-        <hr className="h-full border-r border-neutral-200 dark:border-neutral-700" />
-        <span className="px-3">Deploy</span>
-      </a>
-    </div>
-  </div>
-  <div className="border-t border-neutral-200 py-6 text-sm dark:border-neutral-700">
-    <div className="mx-auto flex w-full max-w-7xl flex-col items-center gap-1 px-4 md:flex-row md:gap-0 md:px-4 min-[1320px]:px-0">
-      <p>© 2023-2025 ACME, Inc. All rights reserved.</p>
-      <hr className="mx-4 hidden h-4 w-[1px] border-l border-neutral-400 md:inline-block" />
-      <p>
-        <a href="https://github.com/vercel/commerce">View the source</a>
-      </p>
-      <p className="md:ml-auto">
-        <a href="https://vercel.com" className="text-black dark:text-white">
-          Created by ▲ Vercel
-        </a>
-      </p>
-    </div>
-  </div>
-</footer>
+        <div className="border-t border-neutral-200 py-6 text-sm dark:border-neutral-700">
+          <div className="mx-auto flex w-full max-w-7xl flex-col items-center gap-1 px-4 md:flex-row md:gap-0 md:px-4 min-[1320px]:px-0">
+            <p>© 2023-2025 ACME, Inc. All rights reserved.</p>
+            <hr className="mx-4 hidden h-4 w-[1px] border-l border-neutral-400 md:inline-block" />
+            <p>
+              <a href="https://github.com/vercel/commerce">View the source</a>
+            </p>
+            <p className="md:ml-auto">
+              <a href="https://vercel.com" className="text-black dark:text-white">
+                Created by ▲ Vercel
+              </a>
+            </p>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
